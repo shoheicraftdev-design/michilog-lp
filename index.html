@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MichiLog — 歩いた道だけ、霧が晴れる散歩地図</title>
+<meta name="description" content="MichiLogは、歩いた道の霧が晴れていく地図に、その場で撮った写真とメモが残る散歩アプリです。">
+<meta property="og:title" content="MichiLog — 歩いた道だけ、霧が晴れる散歩地図">
+<meta property="og:description" content="MichiLogは、歩いた道の霧が晴れていく地図に、その場で撮った写真とメモが残る散歩アプリです。">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f5f5f7;
+    --fg: #1c1c1e;
+    --fg-soft: #5a5a5f;
+    --line: #e3e3e6;
+    --accent: #4a5f8a;
+    --card: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113;
+      --bg-soft: #1c1c1f;
+      --fg: #f2f2f4;
+      --fg-soft: #a8a8ae;
+      --line: #2e2e33;
+      --accent: #a9bce0;
+      --card: #1c1c1f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.85;
+    color: var(--fg);
+    background: var(--bg);
+    font-size: 16px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  /* hero */
+  .hero { text-align: center; padding: 72px 0 56px; }
+  .icon { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 20px; }
+  .mark {
+    display: inline-block; font-size: 0.8rem; letter-spacing: .12em;
+    color: var(--fg-soft); border: 1px solid var(--line);
+    border-radius: 999px; padding: 4px 14px; margin-bottom: 22px;
+  }
+  h1 { font-size: clamp(2rem, 7vw, 3rem); line-height: 1.35; margin: 0 0 18px; letter-spacing: .01em; }
+  .lead { font-size: clamp(1rem, 3.4vw, 1.15rem); color: var(--fg-soft); margin: 0 auto 32px; max-width: 34em; }
+  .cta {
+    display: inline-block; background: var(--fg); color: var(--bg);
+    text-decoration: none; font-weight: 600;
+    padding: 14px 30px; border-radius: 999px; font-size: 1rem;
+  }
+  .cta:hover { opacity: .85; }
+  .cta-note { display: block; margin-top: 12px; font-size: .85rem; color: var(--fg-soft); }
+
+  h2 { font-size: clamp(1.3rem, 4.6vw, 1.7rem); margin: 0 0 10px; line-height: 1.45; }
+  h3 { font-size: 1.05rem; margin: 0 0 6px; }
+  .sub { color: var(--fg-soft); margin: 0 0 30px; }
+  p { margin: 0 0 1em; }
+
+  /* before/after comparison */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; }
+  .compare > div {
+    background: var(--bg-soft); border-radius: 16px; padding: 24px 20px;
+  }
+  .compare .label { font-size: .82rem; color: var(--fg-soft); margin-bottom: 10px; }
+  .compare strong { display: block; font-size: 1rem; margin-bottom: 8px; }
+  .compare p { font-size: .92rem; color: var(--fg-soft); margin: 0; }
+  @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+
+  /* feature rows */
+  .row { display: grid; grid-template-columns: 1fr 260px; gap: 40px; align-items: center; }
+  .row.flip { grid-template-columns: 260px 1fr; }
+  .row.flip .shot { order: -1; }
+  .shot img {
+    width: 100%; max-width: 260px; height: auto; display: block; margin: 0 auto;
+    border-radius: 22px; border: 1px solid var(--line);
+  }
+  @media (max-width: 720px) {
+    .row, .row.flip { grid-template-columns: 1fr; gap: 26px; }
+    .row.flip .shot { order: 0; }
+  }
+
+  ul { padding-left: 1.3em; margin: 0 0 1em; }
+  li { margin-bottom: .4em; }
+  .note { background: var(--bg-soft); border-radius: 14px; padding: 20px 22px; color: var(--fg-soft); font-size: .94rem; }
+  .price { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 26px 0 0; }
+  .price > div { border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px; }
+  .price .tier { font-size: .82rem; color: var(--fg-soft); margin-bottom: 8px; }
+  .price .amount { font-size: 1.35rem; font-weight: 600; margin-bottom: 12px; }
+  .price ul { margin: 0; font-size: .93rem; color: var(--fg-soft); }
+  @media (max-width: 560px) { .price { grid-template-columns: 1fr; } }
+  a { color: var(--accent); }
+
+  footer { padding: 40px 0 64px; font-size: .9rem; color: var(--fg-soft); text-align: center; }
+  footer a { margin: 0 10px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="icon" src="images/appicon.png" alt="MichiLog アプリアイコン">
+    <span class="mark">iPhone アプリ</span>
+    <h1>歩いた道だけ、<br>霧が晴れる。</h1>
+    <p class="lead">
+      知らない道を歩いた日のこと、地図の上に残っていますか。<br>
+      MichiLog（ミチログ）は、歩いた道の霧が晴れていく地図に、その場で撮った写真とメモが残る散歩アプリです。
+    </p>
+    <span class="cta" id="cta-top">App Store で近日公開</span>
+    <span class="cta-note">無料・広告なし</span>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="row flip">
+      <div class="shot"><img src="images/shot-01-fog-map.png" alt="地図タブ。地図全体が薄いグレーの霧に覆われ、これまで歩いた道の周りだけが帯状に晴れて地図が見えている。上に今日の距離 1.71 km と今日の時間 21分、下に開始ボタン" loading="lazy"></div>
+      <div>
+        <h2>地図は最初、すべて霧の中</h2>
+        <p>歩いた道の周りだけ霧が晴れ、晴れた範囲は<strong>これまでの散歩の積み重ね</strong>として広がっていきます。</p>
+        <p>霧は薄く透けていて、下の道路や地名がうっすら見えます。まだ歩いていない道が、どこにあるかは分かります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <h2>散歩中も、歩くそばから晴れていく</h2>
+        <p>開始ボタンを押して歩き、終了ボタンを押すだけ。散歩のルート・距離・時間が記録され、今日歩いた距離と時間は地図の画面でいつでも見られます。</p>
+        <p>画面を閉じても、iPhone をロックしても記録は続きます。</p>
+        <p class="sub" style="margin-bottom:0">電車や車など、歩く速さを超える移動が続いた区間は、ルート・距離・霧に入りません。</p>
+      </div>
+      <div class="shot"><img src="images/shot-02-recording.png" alt="記録中の地図タブ。上に「記録中」と経過時間 0:06:08、距離 0.48 km。青い線で今歩いているルートが描かれ、その周りの霧が晴れている。下に終了ボタンとピンボタン" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="row flip">
+      <div class="shot"><img src="images/shot-03-pin.png" alt="ピンの中身。2026年10月3日 9:36、青空とケヤキの写真と、メモ「空が高い。ケヤキの緑が光ってた」" loading="lazy"></div>
+      <div>
+        <h2>見つけたものを、その場所に残す</h2>
+        <p>散歩中は、現在地にピンを打って写真とメモを残せます。写真もメモも任意なので、気になった場所にさっと印だけ付けることもできます。</p>
+        <p>撮った写真は iPhone の写真アプリ（カメラロール）に保存され、<strong>アプリが持つのは写真への参照だけ</strong>です。</p>
+        <p class="sub" style="margin-bottom:0">写真アプリで消した写真は、MichiLog でも表示されなくなります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <h2>あの日の道を、もう一度</h2>
+        <p>過去の散歩は一覧から選んで、ルートとピンを見返せます。</p>
+        <p>不要な散歩は削除でき、削除すると霧も残った散歩から作り直されます。</p>
+      </div>
+      <div class="shot"><img src="images/shot-04-walk-detail.png" alt="散歩詳細。9月30日（水）の散歩のルートが地図に青い線で描かれ、ピンが2つ。下に 10:30〜10:49、距離 1.56 km、時間 19分、ピンのメモ2件" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="row flip">
+      <div class="shot"><img src="images/shot-05-history.png" alt="履歴タブ。散歩が新しい順に5件、日付と開始時刻、距離と時間が並んでいる" loading="lazy"></div>
+      <div>
+        <h2>歩いた記録が、積み上がる</h2>
+        <p>「履歴」タブに、散歩が新しい順に並びます。日付と開始時刻、距離と時間が1行に出ます。</p>
+        <p class="sub" style="margin-bottom:0">記録できる件数に上限はありません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>料金</h2>
+    <p>無料で使えます。広告もアプリ内課金もありません。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>位置情報とプライバシー</h2>
+    <ul>
+      <li>位置情報は「使用中のみ許可」で使います。「常に許可」は求めません</li>
+      <li>記録したデータは iPhone の中に保存され、外部へ送ることはありません</li>
+      <li>アカウント登録は不要です</li>
+    </ul>
+    <div class="note">
+      散歩の記録中にバックグラウンドで位置情報を使い続けると、バッテリーの消費が増える場合があります。歩行中は画面を見続けず、周囲の安全に気をつけてお使いください。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>対応環境</h2>
+    <ul>
+      <li>iOS 17.0 以上の iPhone</li>
+      <li>記録は端末の中だけに保存されます。機種変更では引き継がれません</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><span class="cta" id="cta-bottom">App Store で近日公開</span></p>
+    <p style="margin-top:26px">
+      <a href="https://shoheicraftdev-design.github.io/michilog-support/">サポート・使い方</a>
+      <a href="https://shoheicraftdev-design.github.io/michilog-support/privacy.html">プライバシーポリシー</a>
+      <a href="https://shoheicraftdev-design.github.io/michilog-support/terms.html">利用規約</a>
+      <a href="mailto:shohei.craft.dev@gmail.com">お問い合わせ</a>
+    </p>
+    <p style="margin-top:18px">ShoheiCraftDev</p>
+  </div>
+</footer>
+
+</body>
+</html>
