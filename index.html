@@ -8,272 +8,291 @@
 <meta property="og:title" content="MichiLog — 歩いた道だけ、霧が晴れる散歩地図">
 <meta property="og:description" content="MichiLogは、歩いた道の霧が晴れていく地図に、その場で撮った写真とメモが残る散歩アプリです。">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #ffffff;
-    --bg-soft: #f5f5f7;
-    --fg: #1c1c1e;
-    --fg-soft: #5a5a5f;
-    --line: #e3e3e6;
-    --accent: #4a5f8a;
-    --card: #ffffff;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #111113;
-      --bg-soft: #1c1c1f;
-      --fg: #f2f2f4;
-      --fg-soft: #a8a8ae;
-      --line: #2e2e33;
-      --accent: #a9bce0;
-      --card: #1c1c1f;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-    line-height: 1.85;
-    color: var(--fg);
-    background: var(--bg);
-    font-size: 16px;
-  }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
-  section:last-of-type { border-bottom: none; }
-
-  /* hero */
-  .hero { text-align: center; padding: 72px 0 56px; }
-  .icon { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 20px; }
-  .mark {
-    display: inline-block; font-size: 0.8rem; letter-spacing: .12em;
-    color: var(--fg-soft); border: 1px solid var(--line);
-    border-radius: 999px; padding: 4px 14px; margin-bottom: 22px;
-  }
-  h1 { font-size: clamp(2rem, 7vw, 3rem); line-height: 1.35; margin: 0 0 18px; letter-spacing: .01em; }
-  .lead { font-size: clamp(1rem, 3.4vw, 1.15rem); color: var(--fg-soft); margin: 0 auto 32px; max-width: 34em; }
-  .cta {
-    display: inline-block; background: var(--fg); color: var(--bg);
-    text-decoration: none; font-weight: 600;
-    padding: 14px 30px; border-radius: 999px; font-size: 1rem;
-  }
-  .cta:hover { opacity: .85; }
-  .cta-note { display: block; margin-top: 12px; font-size: .85rem; color: var(--fg-soft); }
-
-  h2 { font-size: clamp(1.3rem, 4.6vw, 1.7rem); margin: 0 0 10px; line-height: 1.45; }
-  h3 { font-size: 1.05rem; margin: 0 0 6px; }
-  .sub { color: var(--fg-soft); margin: 0 0 30px; }
-  p { margin: 0 0 1em; }
-
-  /* before/after comparison */
-  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; }
-  .compare > div {
-    background: var(--bg-soft); border-radius: 16px; padding: 24px 20px;
-  }
-  .compare .label { font-size: .82rem; color: var(--fg-soft); margin-bottom: 10px; }
-  .compare strong { display: block; font-size: 1rem; margin-bottom: 8px; }
-  .compare p { font-size: .92rem; color: var(--fg-soft); margin: 0; }
-  @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
-
-  /* feature rows */
-  .row { display: grid; grid-template-columns: 1fr 260px; gap: 40px; align-items: center; }
-  .row.flip { grid-template-columns: 260px 1fr; }
-  .row.flip .shot { order: -1; }
-  .shot img {
-    width: 100%; max-width: 260px; height: auto; display: block; margin: 0 auto;
-    border-radius: 22px; border: 1px solid var(--line);
-  }
-  @media (max-width: 720px) {
-    .row, .row.flip { grid-template-columns: 1fr; gap: 26px; }
-    .row.flip .shot { order: 0; }
-  }
-
-  ul { padding-left: 1.3em; margin: 0 0 1em; }
-  li { margin-bottom: .4em; }
-  .note { background: var(--bg-soft); border-radius: 14px; padding: 20px 22px; color: var(--fg-soft); font-size: .94rem; }
-  .price { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 26px 0 0; }
-  .price > div { border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px; }
-  .price .tier { font-size: .82rem; color: var(--fg-soft); margin-bottom: 8px; }
-  .price .amount { font-size: 1.35rem; font-weight: 600; margin-bottom: 12px; }
-  .price ul { margin: 0; font-size: .93rem; color: var(--fg-soft); }
-  @media (max-width: 560px) { .price { grid-template-columns: 1fr; } }
-  a { color: var(--accent); }
-
-  footer { padding: 40px 0 64px; font-size: .9rem; color: var(--fg-soft); text-align: center; }
-  footer a { margin: 0 10px; display: inline-block; }
+body{margin:0;background:#F2F5F7}
+a{color:#B34A17}a:hover{color:#8C3810}
+.ml *{box-sizing:border-box}
+.ml p{margin:0}
+.ml h1,.ml h2,.ml h3{font-family:'Zen Maru Gothic','Zen Kaku Gothic New',sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:80px;align-items:center}
+.split.flip{grid-template-columns:340px minmax(0,1fr)}
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.cols4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.shotimg{width:100%;max-width:340px;height:auto;display:block;border-radius:32px;box-shadow:0 28px 56px -24px rgba(28,42,51,.35)}
+.trail{position:absolute;right:-120px;top:-40px;width:760px;height:760px;pointer-events:none}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;background:#1C2A33;color:#FFFFFF;text-decoration:none;font-weight:700;font-size:16px}
+.cta-btn:hover{background:#2E414D;color:#FFFFFF}
+.cta-btn.light{background:#FFFFFF;color:#1C2A33}
+.cta-btn.light:hover{background:#FCEBDD;color:#1C2A33}
+.foot a{color:#D3DCE2;text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.foot a:hover{color:#FFFFFF;text-decoration:underline}
+@media (max-width:900px){
+.hero,.split,.split.flip{grid-template-columns:minmax(0,1fr);gap:40px}
+.split.flip .shot{order:2}
+.cols3{grid-template-columns:minmax(0,1fr)}
+.cols4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.shot{justify-self:center}
+.trail{right:-260px;top:auto;bottom:-200px;opacity:.6}
+}
+@media (max-width:600px){
+.cols2,.cols4{grid-template-columns:minmax(0,1fr)}
+.hide-sm{display:none}
+}
 </style>
 </head>
 <body>
+<div class="ml" style="font-family: 'Zen Kaku Gothic New', 'Hiragino Sans', sans-serif; color: #1C2A33; background: #F2F5F7; line-height: 1.85; font-size: 16px; overflow-x: hidden">
 
-<header class="hero">
-  <div class="wrap">
-    <img class="icon" src="images/appicon.png" alt="MichiLog アプリアイコン">
-    <span class="mark">iPhone アプリ</span>
-    <h1>歩いた道だけ、<br>霧が晴れる。</h1>
-    <p class="lead">
-      知らない道を歩いた日のこと、地図の上に残っていますか。<br>
-      MichiLog（ミチログ）は、歩いた道の霧が晴れていく地図に、その場で撮った写真とメモが残る散歩アプリです。
-    </p>
-    <a class="cta" id="cta-top" href="https://apps.apple.com/jp/app/michilog/id6819015225">App Store で見る</a>
-    <span class="cta-note">無料（アプリ内課金あり）</span>
-  </div>
+<!-- header -->
+<header style="background: #FFFFFF; border-bottom: 1px solid #DFE6EB">
+<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px">
+<div style="display: flex; align-items: center; gap: 12px">
+<img src="images/appicon.png" alt="" style="width: 36px; height: 36px; border-radius: 9px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: .02em">MichiLog</span>
+</div>
+<a href="https://apps.apple.com/jp/app/michilog/id6819015225" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #1C2A33; color: #1C2A33; text-decoration: none; font-weight: 700; font-size: 14px">App Store で見る</a>
+</div>
 </header>
 
-<section>
-  <div class="wrap">
-    <div class="row flip">
-      <div class="shot"><img src="images/shot-01-fog-map.png" alt="地図タブ。地図全体が薄いグレーの霧に覆われ、これまで歩いた道の周りだけが帯状に晴れて地図が見えている。オレンジのピンが点在し、上に今日の距離 0.79 km と今日の時間 15分、下に開始ボタン" loading="lazy"></div>
-      <div>
-        <h2>地図は最初、すべて霧の中</h2>
-        <p>歩いた道の周りだけ霧が晴れ、晴れた範囲は<strong>これまでの散歩の積み重ね</strong>として広がっていきます。</p>
-        <p>霧は薄く透けていて、下の道路や地名がうっすら見えます。まだ歩いていない道が、どこにあるかは分かります。</p>
-      </div>
-    </div>
-  </div>
+<!-- hero -->
+<section style="position: relative; overflow: hidden; background: #DCE3E8; padding: 96px 0 104px">
+<svg class="trail" viewBox="0 0 760 760" fill="none" aria-hidden="true">
+<path d="M60 720 C 160 600, 120 500, 260 440 S 420 380, 400 260 S 520 80, 700 40" stroke="#F7EEDB" stroke-width="70" stroke-linecap="round"></path>
+<path d="M60 720 C 160 600, 120 500, 260 440 S 420 380, 400 260 S 520 80, 700 40" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 14"></path>
+<path d="M260 440 C 330 500, 420 520, 560 600" stroke="#F7EEDB" stroke-width="56" stroke-linecap="round"></path>
+<circle cx="260" cy="440" r="14" fill="#E0662B"></circle>
+<circle cx="400" cy="262" r="14" fill="#E0662B"></circle>
+<circle cx="560" cy="600" r="14" fill="#E0662B"></circle>
+</svg>
+<div class="wrap hero" style="position: relative">
+<div style="display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
+<span style="font-size: 13px; font-weight: 700; letter-spacing: .12em; color: #1C2A33; background: #FFFFFF; border-radius: 999px; padding: 4px 14px">iPhone アプリ</span>
+<h1 style="margin: 0; font-size: clamp(40px, 6vw, 72px); line-height: 1.28; font-weight: 900; letter-spacing: .02em">歩いた道だけ、<br>霧が晴れる。</h1>
+<p style="font-size: clamp(16px, 1.6vw, 18px); color: #34444F; max-width: 30em">知らない道を歩いた日のこと、地図の上に残っていますか。<br>MichiLog（ミチログ）は、歩いた道の霧が晴れていく地図に、その場で撮った写真とメモが残る散歩アプリです。</p>
+<div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+<a class="cta-btn" id="cta-top" href="https://apps.apple.com/jp/app/michilog/id6819015225">App Store で見る<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+<p style="font-size: 13px; color: #34444F">無料（アプリ内課金あり）</p>
+</div>
+</div>
+<div class="shot" style="justify-self: center"><img class="shotimg" src="images/shot-01-fog-map.png" alt="地図タブ。地図全体が薄いグレーの霧に覆われ、これまで歩いた道の周りだけが帯状に晴れて地図が見えている。オレンジのピンが点在し、上に今日の距離と今日の時間、下に開始ボタン"></div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="row">
-      <div>
-        <h2>散歩中も、歩くそばから晴れていく</h2>
-        <p>開始ボタンを押して歩き、終了ボタンを押すだけ。散歩のルート・距離・時間が記録され、今日歩いた距離と時間は地図の画面でいつでも見られます。</p>
-        <p>画面を閉じても、iPhone をロックしても記録は続きます。</p>
-        <p class="sub" style="margin-bottom:0">電車や車など、歩く速さを超える移動が続いた区間は、ルート・距離・霧に入りません。</p>
-      </div>
-      <div class="shot"><img src="images/shot-02-recording.png" alt="記録中の地図タブ。上に「記録中」と経過時間と距離。青い線で今歩いているルートが描かれ、その周りの霧が晴れている。下に終了ボタンとピンボタン" loading="lazy"></div>
-    </div>
-  </div>
+<!-- 01 霧 -->
+<section style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<span style="font-family: 'DM Mono', monospace; font-size: 14px; color: #B34A17; letter-spacing: .1em">01 — 霧の地図</span>
+<h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.4; font-weight: 900">地図は最初、すべて霧の中</h2>
+<p style="color: #4D5B64">歩いた道の周りだけ霧が晴れ、晴れた範囲はこれまでの散歩の積み重ねとして広がっていきます。霧は薄く透けていて、下の道路や地名がうっすら見えます。まだ歩いていない道が、どこにあるかは分かります。</p>
+</div>
+<div class="cols2">
+<div style="border-radius: 24px; background: #DCE3E8; padding: 28px; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+<svg width="100%" height="72" viewBox="0 0 400 72" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 52 C 80 20, 160 64, 240 30 S 360 40, 400 18" stroke="#BCC7CF" stroke-width="10" stroke-linecap="round" stroke-dasharray="1 18"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">まだ歩いていない道</h3>
+<p style="font-size: 14px; color: #34444F">霧の下に、うっすら見えている</p>
+</div>
+</div>
+<div style="border-radius: 24px; background: #FBF4E6; border: 1px solid #EEDDBD; padding: 28px; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+<svg width="100%" height="72" viewBox="0 0 400 72" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 52 C 80 20, 160 64, 240 30 S 360 40, 400 18" stroke="#F0DDB0" stroke-width="26" stroke-linecap="round"></path><path d="M0 52 C 80 20, 160 64, 240 30 S 360 40, 400 18" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10"></path><circle cx="240" cy="30" r="9" fill="#E0662B"></circle></svg>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">歩いた道</h3>
+<p style="font-size: 14px; color: #4D5B64">周りの霧が晴れて、地図に残っていく</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="row flip">
-      <div class="shot"><img src="images/shot-03-pin.png" alt="ピンの中身。2026年10月3日 9:36、青空とケヤキの写真と、メモ「空が高い。ケヤキの緑が光ってた」" loading="lazy"></div>
-      <div>
-        <h2>見つけたものを、その場所に残す</h2>
-        <p>散歩中は、現在地にピンを打って写真とメモを残せます。写真もメモも任意なので、気になった場所にさっと印だけ付けることもできます。</p>
-        <p>撮った写真は iPhone の写真アプリ（カメラロール）に保存され、<strong>アプリが持つのは写真への参照だけ</strong>です。</p>
-        <p>ピンには「景色」「猫」のようなタグを付けられます。タグは自分で追加・名前の変更・削除ができます。</p>
-        <p class="sub" style="margin-bottom:0">写真アプリで消した写真は、MichiLog でも表示されなくなります。</p>
-      </div>
-    </div>
-  </div>
+<!-- 02 記録中 -->
+<section style="padding: 112px 0">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'DM Mono', monospace; font-size: 14px; color: #B34A17; letter-spacing: .1em">02 — 記録</span>
+<h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.4; font-weight: 900">散歩中も、<br class="hide-sm">歩くそばから晴れていく</h2>
+<p style="color: #4D5B64">開始ボタンを押して歩き、終了ボタンを押すだけ。散歩のルート・距離・時間が記録され、今日歩いた距離と時間は地図の画面でいつでも見られます。</p>
+<p style="color: #4D5B64">画面を閉じても、iPhone をロックしても記録は続きます。</p>
+<div style="background: #FFFFFF; border: 1px solid #DFE6EB; border-radius: 16px; padding: 16px 20px; display: flex; gap: 12px; align-items: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4D5B64" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><rect x="5" y="3" width="14" height="14" rx="3"></rect><path d="M5 11h14"></path><path d="M8 21l2-4"></path><path d="M16 21l-2-4"></path></svg>
+<p style="font-size: 14px; color: #4D5B64; line-height: 1.75">電車や車など、歩く速さを超える移動が続いた区間は、ルート・距離・霧に入りません。</p>
+</div>
+</div>
+<div class="shot"><img class="shotimg" loading="lazy" src="images/shot-02-recording.png" alt="記録中の地図タブ。上に「記録中」と経過時間と距離。青い線で今歩いているルートが描かれ、その周りの霧が晴れている。下に終了ボタンとピンボタン"></div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="row">
-      <div>
-        <h2>あの日の道を、もう一度</h2>
-        <p>過去の散歩は一覧から選んで、ルートとピンを見返せます。</p>
-        <p>散歩を終えたら「散策」「通勤・通学」のような散歩の種類を選べます。種類も自分で追加できます。</p>
-        <p>不要な散歩は削除でき、削除すると霧も残った散歩から作り直されます。</p>
-      </div>
-      <div class="shot"><img src="images/shot-04-walk-detail.png" alt="散歩詳細。9月29日（火）の散歩のルートが地図に青い線で描かれ、ピンが2つ。下に 10:05〜10:24、距離 1.00 km、時間 19分、散歩の種類「散策」、ピンのメモ2件" loading="lazy"></div>
-    </div>
-  </div>
+<!-- 03 ピン -->
+<section style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap split flip">
+<div class="shot"><img class="shotimg" loading="lazy" src="images/shot-03-pin.png" alt="ピンの中身。日時、青空とケヤキの写真と、メモ「空が高い。ケヤキの緑が光ってた」"></div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'DM Mono', monospace; font-size: 14px; color: #B34A17; letter-spacing: .1em">03 — ピン</span>
+<h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.4; font-weight: 900">見つけたものを、<br class="hide-sm">その場所に残す</h2>
+<p style="color: #4D5B64">散歩中は、現在地にピンを打って写真とメモを残せます。写真もメモも任意なので、気になった場所にさっと印だけ付けることもできます。</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<span style="font-size: 14px; font-weight: 700; color: #1C2A33; background: #FBF4E6; border: 1px solid #EEDDBD; border-radius: 999px; padding: 4px 14px">景色</span>
+<span style="font-size: 14px; font-weight: 700; color: #1C2A33; background: #FBF4E6; border: 1px solid #EEDDBD; border-radius: 999px; padding: 4px 14px">猫</span>
+<span style="font-size: 14px; color: #4D5B64">タグは自分で追加・名前の変更・削除ができます</span>
+</div>
+<div style="border-top: 1px solid #DFE6EB; padding-top: 20px; display: flex; flex-direction: column; gap: 8px">
+<p style="font-size: 15px; color: #1C2A33">撮った写真は iPhone の写真アプリ（カメラロール）に保存され、<strong>アプリが持つのは写真への参照だけ</strong>です。</p>
+<p style="font-size: 14px; color: #4D5B64">写真アプリで消した写真は、MichiLog でも表示されなくなります。</p>
+</div>
+</div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="row flip">
-      <div class="shot"><img src="images/shot-05-history.png" alt="履歴タブ。散歩が新しい順に9件、日付と開始時刻、距離と時間、散歩の種類が並んでいる" loading="lazy"></div>
-      <div>
-        <h2>歩いた記録が、積み上がる</h2>
-        <p>「履歴」タブに、散歩が新しい順に並びます。日付と開始時刻、距離と時間が1行に出ます。</p>
-        <p class="sub" style="margin-bottom:0">記録できる件数に上限はありません。</p>
-      </div>
-    </div>
-  </div>
+<!-- 04 あの日の道 -->
+<section style="padding: 112px 0">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'DM Mono', monospace; font-size: 14px; color: #B34A17; letter-spacing: .1em">04 — 見返す</span>
+<h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.4; font-weight: 900">あの日の道を、もう一度</h2>
+<p style="color: #4D5B64">過去の散歩は一覧から選んで、ルートとピンを見返せます。</p>
+<p style="color: #4D5B64">散歩を終えたら「散策」「通勤・通学」のような散歩の種類を選べます。種類も自分で追加できます。</p>
+<p style="color: #4D5B64">不要な散歩は削除でき、削除すると霧も残った散歩から作り直されます。</p>
+</div>
+<div class="shot"><img class="shotimg" loading="lazy" src="images/shot-04-walk-detail.png" alt="散歩詳細。散歩のルートが地図に青い線で描かれ、ピンが2つ。下に時刻、距離、時間、散歩の種類「散策」、ピンのメモ2件"></div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="row">
-      <div>
-        <h2>週・月・年ごとに、振り返る</h2>
-        <p>「まとめ」タブで、期間ごとの散歩の回数・距離・時間をグラフで見られます。散歩の種類別の内訳と、タグ別のピンの数も出ます。</p>
-        <p class="sub" style="margin-bottom:0">アプリ内課金（買い切り）で使える機能です。</p>
-      </div>
-      <div class="shot"><img src="images/shot-06-summary.png" alt="まとめタブの週の表示。9月28日〜10月4日に5回・3.82 km・1時間17分。曜日ごとの距離の棒グラフと、散歩の種類別の回数と距離" loading="lazy"></div>
-    </div>
-  </div>
+<!-- 05 積み上がる -->
+<section style="padding: 112px 0; background: #1C2A33; color: #FFFFFF">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<span style="font-family: 'DM Mono', monospace; font-size: 14px; color: #F4A06E; letter-spacing: .1em">05 — 積み重ね</span>
+<h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.4; font-weight: 900">歩いた記録が、積み上がる</h2>
+<p style="color: #D3DCE2">記録できる件数に上限はありません。</p>
+</div>
+<div class="cols3" style="align-items: start">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<img loading="lazy" src="images/shot-05-history.png" alt="履歴タブ。散歩が新しい順に並び、日付と開始時刻、距離と時間、散歩の種類が出ている" style="width: 100%; height: auto; display: block; border-radius: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">履歴</h3>
+<p style="font-size: 14px; color: #D3DCE2; line-height: 1.75">散歩が新しい順に並びます。日付と開始時刻、距離と時間が1行に出ます。</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<img loading="lazy" src="images/shot-06-summary.png" alt="まとめタブの週の表示。期間の回数・距離・時間、曜日ごとの距離の棒グラフと、散歩の種類別の回数と距離" style="width: 100%; height: auto; display: block; border-radius: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">まとめ</h3>
+<span style="font-size: 12px; font-weight: 700; color: #1C2A33; background: #F4A06E; border-radius: 6px; padding: 1px 8px">買い切りで使える</span>
+</div>
+<p style="font-size: 14px; color: #D3DCE2; line-height: 1.75">週・月・年ごとの散歩の回数・距離・時間をグラフで。散歩の種類別の内訳と、タグ別のピンの数も出ます。</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<img loading="lazy" src="images/shot-07-filter.png" alt="履歴タブを散歩の種類「散策」とタグ「景色」で絞り込んだ表示" style="width: 100%; height: auto; display: block; border-radius: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">絞り込み</h3>
+<span style="font-size: 12px; font-weight: 700; color: #1C2A33; background: #F4A06E; border-radius: 6px; padding: 1px 8px">買い切りで使える</span>
+</div>
+<p style="font-size: 14px; color: #D3DCE2; line-height: 1.75">履歴を散歩の種類とタグで絞り込めます。タグを複数選ぶと、どれかが付いた散歩が並びます。</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="row flip">
-      <div class="shot"><img src="images/shot-07-filter.png" alt="履歴タブを散歩の種類「散策」とタグ「景色」で絞り込んだ表示。4件が並んでいる" loading="lazy"></div>
-      <div>
-        <h2>種類とタグで、記録を絞り込む</h2>
-        <p>履歴を散歩の種類とタグで絞り込めます。タグを複数選ぶと、どれかが付いた散歩が並びます。</p>
-        <p class="sub" style="margin-bottom:0">アプリ内課金（買い切り）で使える機能です。</p>
-      </div>
-    </div>
-  </div>
+<!-- 06 iCloud -->
+<section style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap split flip">
+<div class="shot"><img class="shotimg" loading="lazy" src="images/shot-08-settings.png" alt="設定タブ。散歩の種類とタグの一覧、iCloud 同期の欄に「iCloud と同期しています」と最終同期の時刻"></div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'DM Mono', monospace; font-size: 14px; color: #B34A17; letter-spacing: .1em">06 — 引き継ぎ</span>
+<h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.4; font-weight: 900">機種変更しても、引き継げる</h2>
+<p style="color: #4D5B64">記録は iCloud で同じ Apple Account の iPhone どうしに自動で同期されます。<strong style="color: #1C2A33">購入しなくても使えます。</strong>アプリの中での操作は要りません。</p>
+<p style="font-size: 14px; color: #4D5B64">写真そのものは iCloud に送りません。別の iPhone で写真が見えるのは、iCloud 写真がオンのときです。</p>
+</div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="row">
-      <div>
-        <h2>機種変更しても、引き継げる</h2>
-        <p>記録は iCloud で同じ Apple Account の iPhone どうしに自動で同期されます。<strong>購入しなくても使えます。</strong>アプリの中での操作は要りません。</p>
-        <p class="sub" style="margin-bottom:0">写真そのものは iCloud に送りません。別の iPhone で写真が見えるのは、iCloud 写真がオンのときです。</p>
-      </div>
-      <div class="shot"><img src="images/shot-08-settings.png" alt="設定タブ。散歩の種類とタグの一覧、iCloud 同期の欄に「iCloud と同期しています」と最終同期の時刻" loading="lazy"></div>
-    </div>
-  </div>
+<!-- 料金 -->
+<section style="padding: 112px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.4; font-weight: 900">料金</h2>
+<p style="color: #4D5B64">定期的な支払いはありません。</p>
+</div>
+<div class="cols2" style="align-items: stretch">
+<div style="background: #FFFFFF; border: 1px solid #DFE6EB; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<h3 style="margin: 0; font-size: 24px; font-weight: 900">無料</h3>
+<span style="font-family: 'DM Mono', monospace; font-size: 28px; font-weight: 500">¥0</span>
+</div>
+<p style="font-size: 15px; font-weight: 700">記録・霧・ピン・履歴・iCloud での引き継ぎは、ずっと無料です。</p>
+<p style="font-size: 14px; color: #4D5B64; line-height: 1.8">購入していない間は、履歴・まとめ・設定の画面と、散歩を終えたあとに広告が出ます。地図の画面には出ません。</p>
+</div>
+<div style="background: #FFFFFF; border: 2px solid #E0662B; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<h3 style="margin: 0; font-size: 24px; font-weight: 900">アプリ内課金</h3>
+<span style="display: flex; align-items: baseline; gap: 8px"><span style="font-size: 13px; font-weight: 700; color: #B34A17">買い切り</span><span style="font-family: 'DM Mono', monospace; font-size: 28px; font-weight: 500">¥480</span></span>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.7">
+<li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B34A17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 5px"><path d="M5 12l5 5 9-10"></path></svg><span>広告が消える</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B34A17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 5px"><path d="M5 12l5 5 9-10"></path></svg><span>まとめ</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B34A17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 5px"><path d="M5 12l5 5 9-10"></path></svg><span>履歴の絞り込み</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B34A17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 5px"><path d="M5 12l5 5 9-10"></path></svg><span>6個目以降のタグと散歩の種類</span></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <h2>料金</h2>
-    <p>無料で使えます。記録・霧・ピン・履歴・iCloud での引き継ぎは、ずっと無料です。</p>
-    <p>購入していない間は、履歴・まとめ・設定の画面と、散歩を終えたあとに広告が出ます。地図の画面には出ません。</p>
-    <p>アプリ内課金（480円・買い切り）で、広告を消し、まとめ・履歴の絞り込み・6個目以降のタグと散歩の種類がまとめて使えるようになります。定期的な支払いはありません。</p>
-  </div>
+<!-- プライバシー -->
+<section style="padding: 0 0 112px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<h2 style="margin: 0; font-size: clamp(24px, 3vw, 32px); line-height: 1.4; font-weight: 900">位置情報とプライバシー</h2>
+<div class="cols4">
+<div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C2A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+<p style="font-size: 14px; line-height: 1.75">位置情報は「使用中のみ許可」で使います。「常に許可」は求めません</p>
+</div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C2A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"></rect><path d="M11 18h2"></path></svg>
+<p style="font-size: 14px; line-height: 1.75">記録したデータは iPhone とご自身の iCloud に保存され、開発者が受け取ることはありません</p>
+</div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C2A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M7 10h6"></path><path d="M7 14h10"></path></svg>
+<p style="font-size: 14px; line-height: 1.75">広告の表示のために、広告配信事業者（Google）が端末の識別子などを使います。トラッキングの許可は任意です</p>
+</div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C2A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+<p style="font-size: 14px; line-height: 1.75">アカウント登録は不要です</p>
+</div>
+</div>
+<div style="background: #E7ECEF; border-radius: 20px; padding: 22px 26px; display: flex; flex-direction: column; gap: 8px">
+<p style="font-size: 14px; color: #34444F; line-height: 1.8">散歩の記録中にバックグラウンドで位置情報を使い続けると、バッテリーの消費が増える場合があります。歩行中は画面を見続けず、周囲の安全に気をつけてお使いください。</p>
+<p style="font-size: 14px; color: #34444F">対応環境：iOS 17.0 以上の iPhone</p>
+</div>
+</div>
 </section>
 
-<section>
-  <div class="wrap">
-    <h2>位置情報とプライバシー</h2>
-    <ul>
-      <li>位置情報は「使用中のみ許可」で使います。「常に許可」は求めません</li>
-      <li>記録したデータは iPhone とご自身の iCloud に保存され、開発者が受け取ることはありません</li>
-      <li>広告の表示のために、広告配信事業者（Google）が端末の識別子などを使います。トラッキングの許可は任意です</li>
-      <li>アカウント登録は不要です</li>
-    </ul>
-    <div class="note">
-      散歩の記録中にバックグラウンドで位置情報を使い続けると、バッテリーの消費が増える場合があります。歩行中は画面を見続けず、周囲の安全に気をつけてお使いください。
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>対応環境</h2>
-    <ul>
-      <li>iOS 17.0 以上の iPhone</li>
-      <li>記録は iCloud で同じ Apple Account の iPhone に引き継がれます</li>
-    </ul>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <p><a class="cta" id="cta-bottom" href="https://apps.apple.com/jp/app/michilog/id6819015225">App Store で見る</a></p>
-    <p style="margin-top:26px">
-      <a href="https://shoheicraftdev-design.github.io/michilog-support/">サポート・使い方</a>
-      <a href="https://shoheicraftdev-design.github.io/michilog-support/privacy.html">プライバシーポリシー</a>
-      <a href="https://shoheicraftdev-design.github.io/michilog-support/terms.html">利用規約</a>
-      <a href="mailto:shohei.craft.dev@gmail.com">お問い合わせ</a>
-    </p>
-    <p style="margin-top:18px">ShoheiCraftDev</p>
-  </div>
+<!-- final CTA + footer -->
+<footer style="background: #1C2A33; color: #FFFFFF; padding: 96px 0 40px">
+<div class="wrap" style="display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center">
+<img src="images/appicon.png" alt="MichiLog アプリアイコン" style="width: 88px; height: 88px; border-radius: 22px">
+<h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 38px); line-height: 1.5; font-weight: 900">今日の散歩から、<br>霧を晴らしていく。</h2>
+<a class="cta-btn light" id="cta-bottom" href="https://apps.apple.com/jp/app/michilog/id6819015225">App Store で見る<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+<p style="font-size: 13px; color: #D3DCE2">無料（アプリ内課金あり）</p>
+<nav class="foot" aria-label="関連リンク" style="display: flex; flex-wrap: wrap; justify-content: center; column-gap: 28px; row-gap: 0; margin-top: 32px; font-size: 14px">
+<a href="https://shoheicraftdev-design.github.io/michilog-support/">サポート・使い方</a>
+<a href="https://shoheicraftdev-design.github.io/michilog-support/privacy.html">プライバシーポリシー</a>
+<a href="https://shoheicraftdev-design.github.io/michilog-support/terms.html">利用規約</a>
+<a href="mailto:shohei.craft.dev@gmail.com">お問い合わせ</a>
+</nav>
+<p style="font-size: 13px; color: #A9B6BF">ShoheiCraftDev</p>
+</div>
 </footer>
 
+</div>
 </body>
 </html>
